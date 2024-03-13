@@ -1,4 +1,16 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import UnpluginParcelMacros from 'unplugin-parcel-macros'
 
-export default nextConfig;
+const plugin = UnpluginParcelMacros.webpack()
+
+/** @type {import('next').NextConfig} */
+export default {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.(?:jsx?|tsx?|mdx?)$/,
+      exclude: /node_modules/,
+      use: [{ loader: './loader' }],
+    })
+    config.plugins.push(plugin)
+    return config
+  },
+}
