@@ -5,7 +5,7 @@ const plugin = UnpluginParcelMacros.webpack()
 /** @type {import('next').NextConfig} */
 export default {
   webpack(config) {
-    config.module.rules.push({
+    config.module.rules.unshift({
       test: /\.(?:jsx?|tsx?|mdx?)$/,
       exclude: /node_modules/,
       use: [{ loader: './loader' }],
